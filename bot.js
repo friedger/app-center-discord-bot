@@ -111,7 +111,7 @@ const fetchData = async () => {
   const discordData = require("./app-data.json");
 
   appcoData.apps.forEach(app => {
-    const index = app.name.replace(/\s/g, "").toLowerCase();
+    const index = app.name.replace(/[^A-Za-z0-9]/g, "").toLowerCase();
     client.appsIndex.set(index, app.id);
     client.appsInfo.set(app.id, app);
     console.log(`adding ${index}`);

@@ -8,7 +8,10 @@ module.exports = {
   args: true,
   execute(message, args) {
     const { appsIndex, appsInfo } = message.client;
-    const name = args.join("").toLowerCase();
+    const name = args
+      .join("")
+      .replace(/[^A-Za-z0-9]/g, "")
+      .toLowerCase();
     const appId = appsIndex.get(name);
     const app = appsInfo.get(appId);
     if (app) {
