@@ -31,11 +31,21 @@ module.exports = {
           `[${app.twitterHandle}](https://twitter.com/${app.twitterHandle})`
         );
       }
-      if (app.openSourceUrl && !app.nossReason)
+      if (app.openSourceUrl && !app.nossReason) {
         appEmbed.addField(
           "Source code",
           `[${app.openSourceUrl}](${app.openSourceUrl})`
         );
+      }
+
+      if (app.manifestUrl) {
+        const url = new URL(app.manifestUrl);
+        appEmbed.addField(
+          "Auth domain",
+          `[${url.host}](${app.manifestUrl} '${app.manifestUrl}')`
+        );
+      }
+
       appEmbed.setFooter(`App ID: ${app.id}`);
       message.channel.send(appEmbed);
       if (app.discords) {
