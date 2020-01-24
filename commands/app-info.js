@@ -1,5 +1,16 @@
 const Discord = require("discord.js");
 
+function slugify(text) {
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, "-") // Replace spaces with -
+    .replace(/[^\w\-]+/g, "") // Remove all non-word chars
+    .replace(/\-\-+/g, "-") // Replace multiple - with single -
+    .replace(/^-+/, "") // Trim - from start of text
+    .replace(/-+$/, ""); // Trim - from end of text
+}
+
 module.exports = {
   name: "app-info",
   description: "Display info about apps.",
@@ -48,6 +59,12 @@ module.exports = {
           `[${url.host}](${app.manifestUrl} '${app.manifestUrl}')`
         );
       }
+      appEmbed.addField(
+        "More",
+        `[Reviews](https://app-center.openintents.org/appco/${
+          app.id
+        }) | [app.co](https://app.co/app/${slugify(app.name)})`
+      );
 
       appEmbed.setFooter(`App ID: ${app.id}`);
       message.channel.send(appEmbed);
