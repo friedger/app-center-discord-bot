@@ -8,7 +8,7 @@ module.exports = {
   cooldown: 5,
   execute(message, args) {
     const data = [];
-    const { commands } = message.client;
+    const { commands, appsInfo } = message.client;
 
     if (!args.length) {
       data.push("Here's a list of all my commands:");
@@ -16,8 +16,9 @@ module.exports = {
       data.push(
         `\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`
       );
+      data.push(`\nI can show you information about ${appsInfo.size} apps.`);
       data.push(
-        `\nYou can send pull requests to https://github.com/friedger/app-center-discord-bot!`
+        `You can send pull requests to my https://github.com/friedger/app-center-discord-bot and build an even better me.`
       );
 
       return message.author
