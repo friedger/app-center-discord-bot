@@ -7,8 +7,9 @@
     "start": "node bot.js"
   },
   "dependencies": {
-    "discord.js": "11.5.1",
+    "discord.js": "discordjs/discord.js",
     "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.0",
     "request": "2.88.0"
   }
 }
