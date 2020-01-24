@@ -16,6 +16,9 @@ module.exports = {
       data.push(
         `\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`
       );
+      data.push(
+        `\nYou can send pull requests to https://github.com/friedger/app-center-discord-bot!`
+      );
 
       return message.author
         .send(data, { split: true })

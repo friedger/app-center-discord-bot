@@ -36,7 +36,15 @@ module.exports = {
           "Source code",
           `[${app.openSourceUrl}](${app.openSourceUrl})`
         );
+      appEmbed.setFooter(`App ID: ${app.id}`);
       message.channel.send(appEmbed);
+      if (app.discords) {
+        message.channel.send(
+          `For more details you can contact ${app.discords
+            .map(user => `@${user}`)
+            .join(", ")}`
+        );
+      }
     } else {
       message.channel.send(`No information found for ${args.join(" ")}`);
     }

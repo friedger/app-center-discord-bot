@@ -108,6 +108,8 @@ const fetchData = async () => {
   );
   const appcoData = await response.json();
 
+  const discordData = require("./app-data.json");
+
   appcoData.apps.forEach(app => {
     const index = app.name.replace(/\s/g, "").toLowerCase();
     client.appsIndex.set(index, app.id);
@@ -116,6 +118,16 @@ const fetchData = async () => {
   });
 
   communityData.forEach(app => {
+    const appco = client.appsInfo.get(app.id);
+    if (appco) {
+      client.appsInfo.set(app.id, { ...appco, ...app });
+    } else {
+      console.log(`missing app co data for ${app.id}`);
+      client.appsInfo.set(app.id, app);
+    }
+  });
+
+  discordData.forEach(app => {
     const appco = client.appsInfo.get(app.id);
     if (appco) {
       client.appsInfo.set(app.id, { ...appco, ...app });
