@@ -11,6 +11,50 @@ function slugify(text) {
     .replace(/-+$/, ""); // Trim - from end of text
 }
 
+function appToEmbed(app) {
+  const appEmbed = new Discord.MessageEmbed()
+    .setTitle(`${app.name}`)
+    .setURL(`${app.website}`);
+  if (app.authors) {
+    appEmbed.setAuthor(app.authors);
+  }
+  appEmbed
+    .setDescription(`${app.description}`)
+    .setThumbnail(`${app.imgixImageUrl}`)
+    .addField("Category", `${app.category}`);
+  if (app.blockchain) {
+    appEmbed.addField("Blockchain", `${app.blockchain}`);
+  }
+  if (app.twitterHandle) {
+    appEmbed.addField(
+      "Twitter",
+      `[${app.twitterHandle}](https://twitter.com/${app.twitterHandle})`
+    );
+  }
+  if (app.openSourceUrl && !app.nossReason) {
+    appEmbed.addField(
+      "Source code",
+      `[${app.openSourceUrl}](${app.openSourceUrl})`
+    );
+  }
+
+  if (app.manifestUrl) {
+    const url = new URL(app.manifestUrl);
+    appEmbed.addField(
+      "Auth domain",
+      `[${url.host}](${app.manifestUrl} '${app.manifestUrl}')`
+    );
+  }
+  appEmbed.addField(
+    "More",
+    `[Reviews](https://app-center.openintents.org/appco/${
+      app.id
+    }) | [app.co](https://app.co/app/${slugify(app.name)})`
+  );
+
+  appEmbed.setFooter(`App ID: ${app.id}`);
+}
+
 module.exports = {
   name: "app-info",
   description: "Display info about apps.",
@@ -26,47 +70,7 @@ module.exports = {
     const appId = appsIndex.get(name);
     const app = appsInfo.get(appId);
     if (app) {
-      const appEmbed = new Discord.MessageEmbed()
-        .setTitle(`${app.name}`)
-        .setURL(`${app.website}`);
-      if (app.authors) {
-        appEmbed.setAuthor(app.authors);
-      }
-      appEmbed
-        .setDescription(`${app.description}`)
-        .setThumbnail(`${app.imgixImageUrl}`)
-        .addField("Category", `${app.category}`);
-      if (app.blockchain) {
-        appEmbed.addField("Blockchain", `${app.blockchain}`);
-      }
-      if (app.twitterHandle) {
-        appEmbed.addField(
-          "Twitter",
-          `[${app.twitterHandle}](https://twitter.com/${app.twitterHandle})`
-        );
-      }
-      if (app.openSourceUrl && !app.nossReason) {
-        appEmbed.addField(
-          "Source code",
-          `[${app.openSourceUrl}](${app.openSourceUrl})`
-        );
-      }
-
-      if (app.manifestUrl) {
-        const url = new URL(app.manifestUrl);
-        appEmbed.addField(
-          "Auth domain",
-          `[${url.host}](${app.manifestUrl} '${app.manifestUrl}')`
-        );
-      }
-      appEmbed.addField(
-        "More",
-        `[Reviews](https://app-center.openintents.org/appco/${
-          app.id
-        }) | [app.co](https://app.co/app/${slugify(app.name)})`
-      );
-
-      appEmbed.setFooter(`App ID: ${app.id}`);
+      const appEmbed = appToEmbed(app);
       message.channel.send(appEmbed);
       if (app.discords) {
         message.channel.send(
