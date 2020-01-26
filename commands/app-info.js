@@ -18,10 +18,11 @@ function appToEmbed(app) {
   if (app.authors) {
     appEmbed.setAuthor(app.authors);
   }
-  appEmbed
-    .setDescription(`${app.description}`)
-    .setThumbnail(`${app.imgixImageUrl}`)
-    .addField("Category", `${app.category}`);
+  appEmbed.setDescription(`${app.description}`);
+  if (app.imgixImageUrl) {
+    appEmbed.setThumbnail(`${app.imgixImageUrl}`);
+  }
+  appEmbed.addField("Category", `${app.category}`);
   if (app.blockchain) {
     appEmbed.addField("Blockchain", `${app.blockchain}`);
   }
@@ -53,6 +54,7 @@ function appToEmbed(app) {
   );
 
   appEmbed.setFooter(`App ID: ${app.id}`);
+  return appEmbed;
 }
 
 module.exports = {
@@ -71,9 +73,12 @@ module.exports = {
     const app = appsInfo.get(appId);
     if (app) {
       const appEmbed = appToEmbed(app);
-      message.channel.send(appEmbed);
+      const channel =
+        message.client.channels.get("667964235292213257") || message.channel;
+      channel.send(`<@${message.author.id}> requested info about ${app.name}`);
+      channel.send(appEmbed);
       if (app.discords) {
-        message.channel.send(
+        channel.send(
           `For more details you can contact ${app.discords
             .map(user => `@${user}`)
             .join(", ")}`
