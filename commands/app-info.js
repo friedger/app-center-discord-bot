@@ -41,17 +41,16 @@ function appToEmbed(app) {
 
   if (app.manifestUrl) {
     const url = new URL(app.manifestUrl);
-    appEmbed.addField(
-      "Auth domain",
-      `[${url.host}](${app.manifestUrl} '${app.manifestUrl}')`
-    );
+    appEmbed.addField("Auth domain", `${url.host}`);
   }
-  appEmbed.addField(
-    "More",
-    `[Reviews](https://app-center.openintents.org/appco/${
-      app.id
-    }) | [app.co](https://app.co/app/${slugify(app.name)})`
-  );
+  var moreText = `[Reviews](https://app-center.openintents.org/appco/${
+    app.id
+  }) | [app.co](https://app.co/app/${slugify(app.name)})`;
+
+  if (app.manifestUrl) {
+    moreText += ` | [Web Manifest](${app.manifestUrl})`;
+  }
+  appEmbed.addField("More", moreText);
 
   appEmbed.setFooter(`App ID: ${app.id}`);
   return appEmbed;
@@ -73,9 +72,21 @@ module.exports = {
     const app = appsInfo.get(appId);
     if (app) {
       const appEmbed = appToEmbed(app);
-      const channel =
-        message.client.channels.get("667964235292213257") || message.channel;
-      channel.send(`<@${message.author.id}> requested info about ${app.name}`);
+
+      var channel = message.channel;
+      const channelId = channel.id;
+      if (channel.type !== "dm" && channelId !== "667964235292213257") {
+        const appDirectoryChannel = message.client.channels.get(
+          "667964235292213257"
+        );
+        if (appDirectoryChannel) {
+          channel = appDirectoryChannel;
+          channel.send(
+            `<@${message.author.id}> requested info about ${app.name}`
+          );
+        }
+      }
+
       channel.send(appEmbed);
       if (app.discords) {
         channel.send(
