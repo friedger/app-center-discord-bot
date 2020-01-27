@@ -1,61 +1,91 @@
 [
-  { "id": 2098, "discords": ["David Yap"] },
+  { "id": 2098, "names": [{ "name": "David Yap", "discord": "David Yap" }] },
   {
     "id": 2149,
-    "discords": ["LavaGames"]
+    "names": [{ "name": "Nathan Thompson", "discord": "LavaGames" }]
   },
   {
     "id": 1251,
-    "discords": ["Philip"]
+    "names": [{ "name": "Phillip", "discord": "Phillip#1157" }]
   },
   {
     "id": 1459,
-    "discords": ["KevinNTH"]
+    "names": [{ "name": "Kevin Nguyen", "discord": "KevinNTH" }]
   },
   {
     "id": 1594,
-    "discords": ["dant", "laytolayto"]
+    "names": [
+      { "name": "Dan Trevino", "discord": "dant" },
+      { "name": "Layton Diament", "discord": "laytolayto" }
+    ]
   },
   {
     "id": 1744,
-    "discords": ["dant", "laytolayto"]
+    "names": [
+      { "name": "Dan Trevino", "discord": "dant" },
+      { "name": "Layton Diament", "discord": "laytolayto" }
+    ]
   },
   {
     "id": 520,
-    "discords": ["dant", "laytolayto"]
+    "names": [
+      { "name": "Dan Trevino", "discord": "dant" },
+      { "name": "Layton Diament", "discord": "laytolayto" }
+    ]
   },
-  { "id": 1571, "discords": ["Wilson Bright", "Raja I", "Harini Rajan"] },
-  { "id": 2361, "discords": ["JW"] },
+  {
+    "id": 1571,
+    "names": [
+      { "name": "Wilson Bright John", "discord": "Wilson Bright" },
+      { "name": "Raja Ilayaperumal", "discord": "Raja I" },
+      { "name": "Harini Rajan", "discord": "Harini Rajan" }
+    ]
+  },
+  { "id": 2361, "names": [{ "discord": "JW" }] },
   {
     "id": 2421,
-    "discords": ["Khoa Nguyen", "Alan Tran - Privakeeper.com#2725"]
+    "names": [
+      { "discord": "Khoa Nguyen" },
+      { "discord": "Alan Tran - Privakeeper.com#2725" }
+    ],
+    "facebook": "https://www.facebook.com/privakeeper.official/"
   },
   {
     "id": 1416,
-    "discords": ["betosmith2000#1890"]
+    "names": [{ "name": "Robeto  Courech", "discord": "betosmith2000#1890" }]
   },
   {
     "id": 2362,
-    "discords": ["betosmith2000#1890"]
+    "names": [{ "name": "Robeto  Courech", "discord": "betosmith2000#1890" }]
   },
   {
     "id": 2413,
-    "discords": ["misikoff", "colin - reclaim", "AGP", "hunterglandis"]
+    "names": [
+      { "name": "Thomas Misikoff", "discord": "misikoff" },
+      { "name": "Colin Brady", "discord": "colin - reclaim" },
+      { "name": "Alvaro Pereira", "discord": "AGP" },
+      { "name": "Hunter Landis", "discord": "hunterglandis" }
+    ]
   },
-  { "id": 2082, "discords": ["Jessica - Dcasso"] },
+  {
+    "id": 2082,
+    "names": [{ "name": "Jessica", "discord": "Jessica - Dcasso" }]
+  },
   {
     "id": 2191,
-    "discords": ["Anthony"],
-    "telegram": ["ItsAnthony"]
+    "names": [{ "discord": "Anthony", "telegram": "ItsAnthony" }]
   },
-  { "id": 945, "discords": ["MuneebMajeed"] },
-  { "id": 1723, "discords": ["Terje|njordhov"] },
-  { "id": 2407, "discords": ["mardi"] },
-  { "id": 1444, "discords": ["friedger"] },
-  { "id": 1754, "discords": ["friedger"] },
-  { "id": 1062, "discords": ["friedger"] },
-  { "id": 924, "discords": ["friedger"] },
-  { "id": 676, "discords": ["friedger"] },
-  { "id": 1719, "discords": ["Juliet"] },
-  { "id": 2602, "discords": ["David Yap"] }
+  {
+    "id": 945,
+    "names": [{ "name": "Muneeb Majeed", "discord": "MuneebMajeed" }]
+  },
+  { "id": 1723, "names": [{ "name": "Terje", "discord": "Terje|njordhov" }] },
+  { "id": 2407, "names": [{ "name": "Mardi", "discord": "mardi" }] },
+  { "id": 1444, "names": [{ "discord": "friedger" }] },
+  { "id": 1754, "names": [{ "discord": "friedger" }] },
+  { "id": 1062, "names": [{ "discord": "friedger" }] },
+  { "id": 924, "names": [{ "discord": "friedger" }] },
+  { "id": 676, "names": [{ "discord": "friedger" }] },
+  { "id": 1719, "names": [{ "discord": "Juliet" }] },
+  { "id": 2602, "names": [{ "name": "David Yap", "discord": "David Yap" }] }
 ]

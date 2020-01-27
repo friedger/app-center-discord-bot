@@ -73,25 +73,11 @@ module.exports = {
     if (app) {
       const appEmbed = appToEmbed(app);
 
-      var channel = message.channel;
-      const channelId = channel.id;
-      if (channel.type !== "dm" && channelId !== "667964235292213257") {
-        const appDirectoryChannel = message.client.channels.get(
-          "667964235292213257"
-        );
-        if (appDirectoryChannel) {
-          channel = appDirectoryChannel;
-          channel.send(
-            `<@${message.author.id}> requested info about ${app.name}`
-          );
-        }
-      }
-
-      channel.send(appEmbed);
-      if (app.discords) {
-        channel.send(
-          `For more details you can contact ${app.discords
-            .map(user => `@${user}`)
+      message.author.send(appEmbed);
+      if (app.names) {
+        message.author.send(
+          `For more details you can contact ${app.names
+            .map(user => `@${user.discord}`)
             .join(", ")}`
         );
       }
