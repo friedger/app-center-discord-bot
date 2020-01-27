@@ -1,64 +1,44 @@
 const Discord = require("discord.js");
 
-function slugify(text) {
-  return text
-    .toString()
-    .toLowerCase()
-    .replace(/\s+/g, "-") // Replace spaces with -
-    .replace(/[^\w\-]+/g, "") // Remove all non-word chars
-    .replace(/\-\-+/g, "-") // Replace multiple - with single -
-    .replace(/^-+/, "") // Trim - from start of text
-    .replace(/-+$/, ""); // Trim - from end of text
-}
-
 function appToEmbed(app) {
   const appEmbed = new Discord.MessageEmbed()
     .setTitle(`${app.name}`)
     .setURL(`${app.website}`);
-  if (app.authors) {
-    appEmbed.setAuthor(app.authors);
+
+  var description = "";
+
+  if (app.names) {
+    description +=
+      "Name: " +
+      app.names
+        .map(u => {
+          var name = u.name ? `${u.name} (@${u.discord})` : `@${u.discord}`;
+          if (u.telegram) {
+            name += ` @${u.telegram} (Telegram)`;
+          }
+          return name;
+        })
+        .join(", ");
   }
-  appEmbed.setDescription(`${app.description}`);
+  if (description.length > 0) {
+    description += "\n";
+  }
+  description += app.description;
+  description += `\nWebsite: [${app.website}](${app.website})`;
+  if (app.twitterHandle) {
+    description += `\nSocial Links: Twitter:[${app.twitterHandle}](https://twitter.com/${app.twitterHandle})`;
+  }
+  appEmbed.setDescription(description);
   if (app.imgixImageUrl) {
     appEmbed.setThumbnail(`${app.imgixImageUrl}`);
   }
-  appEmbed.addField("Category", `${app.category}`);
-  if (app.blockchain) {
-    appEmbed.addField("Blockchain", `${app.blockchain}`);
-  }
-  if (app.twitterHandle) {
-    appEmbed.addField(
-      "Twitter",
-      `[${app.twitterHandle}](https://twitter.com/${app.twitterHandle})`
-    );
-  }
-  if (app.openSourceUrl && !app.nossReason) {
-    appEmbed.addField(
-      "Source code",
-      `[${app.openSourceUrl}](${app.openSourceUrl})`
-    );
-  }
 
-  if (app.manifestUrl) {
-    const url = new URL(app.manifestUrl);
-    appEmbed.addField("Auth domain", `${url.host}`);
-  }
-  var moreText = `[Reviews](https://app-center.openintents.org/appco/${
-    app.id
-  }) | [app.co](https://app.co/app/${slugify(app.name)})`;
-
-  if (app.manifestUrl) {
-    moreText += ` | [Web Manifest](${app.manifestUrl})`;
-  }
-  appEmbed.addField("More", moreText);
-
-  appEmbed.setFooter(`App ID: ${app.id}`);
   return appEmbed;
 }
 
 module.exports = {
   name: "app-info",
-  description: "Display info about apps.",
+  description: "Display short info about apps.",
   usage: "[app name]",
   cooldown: 5,
   args: true,
@@ -73,11 +53,25 @@ module.exports = {
     if (app) {
       const appEmbed = appToEmbed(app);
 
-      message.author.send(appEmbed);
-      if (app.names) {
-        message.author.send(
-          `For more details you can contact ${app.names
-            .map(user => `@${user.discord}`)
+      var channel = message.channel;
+      const channelId = channel.id;
+      if (channel.type !== "dm" && channelId !== "667964235292213257") {
+        const appDirectoryChannel = message.client.channels.get(
+          "667964235292213257"
+        );
+        if (appDirectoryChannel) {
+          channel = appDirectoryChannel;
+          channel.send(
+            `<@${message.author.id}> requested info about ${app.name}`
+          );
+        }
+      }
+
+      channel.send(appEmbed);
+      if (app.discords) {
+        channel.send(
+          `For more details you can contact ${app.discords
+            .map(user => `@${user}`)
             .join(", ")}`
         );
       }
