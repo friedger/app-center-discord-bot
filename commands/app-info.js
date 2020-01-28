@@ -26,7 +26,7 @@ function appToEmbed(app) {
   description += app.description;
   description += `\nWebsite: [${app.website}](${app.website})`;
   if (app.twitterHandle) {
-    description += `\nSocial Links: Twitter:[${app.twitterHandle}](https://twitter.com/${app.twitterHandle})`;
+    description += `\nSocial Links: Twitter: [${app.twitterHandle}](https://twitter.com/${app.twitterHandle})`;
   }
   appEmbed.setDescription(description);
   if (app.imgixImageUrl) {
