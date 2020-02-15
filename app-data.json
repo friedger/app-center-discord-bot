@@ -87,5 +87,23 @@
   { "id": 924, "names": [{ "discord": "friedger" }] },
   { "id": 676, "names": [{ "discord": "friedger" }] },
   { "id": 1719, "names": [{ "discord": "Juliet" }] },
-  { "id": 2602, "names": [{ "name": "David Yap", "discord": "David Yap" }] }
+  { "id": 2602, "names": [{ "name": "David Yap", "discord": "David Yap" }] },
+  {
+    "id": 1092,
+    "names": [{ "name": "Leo", "discord": "leopadrel" }, { "name": "Quentin" }]
+  },
+  {
+    "id": 1074,
+    "names": [{ "name": "Leo", "discord": "leopadrel" }]
+  },
+  {
+    "id": 1085,
+    "names": [{ "name": "Cornelius", "discord": "cobolt83" }]
+  },
+  {
+    "id": 2575,
+    "names": [
+      { "name": "Ruslan Konev", "discord": "Ruslan Konev – BlockNOTE#3999 " }
+    ]
+  }
 ]
