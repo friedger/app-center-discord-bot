@@ -103,7 +103,23 @@
   {
     "id": 2575,
     "names": [
-      { "name": "Ruslan Konev", "discord": "Ruslan Konev – BlockNOTE#3999 " }
+      { "name": "Ruslan Konev", "discord": "Ruslan Konev – BlockNOTE#3999" }
     ]
+  },
+  {
+    "id": 2753,
+    "names": [{ "discord": "mulla" }]
+  },
+  {
+    "id": 2689,
+    "names": [{ "name": "YoungHwi", "discord": "project7" }]
+  },
+  {
+    "id": 2689,
+    "names": [{ "name": "YoungHwi", "discord": "project7" }]
+  },
+  {
+    "id": 2201,
+    "names": [{ "discord": "jpaulet" }]
   }
 ]
